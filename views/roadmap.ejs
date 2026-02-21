@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Smart Roadmap | Paperify</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Manrope', sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #ecfeff 100%); }
+    .glass { background: rgba(255,255,255,.8); backdrop-filter: blur(8px); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <div class="glass rounded-2xl shadow-lg p-6 border border-white/70">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-800">Career Smart System</h1>
+          <p class="text-slate-600 mt-1">Goal-based roadmap with timeline, free learning sources, tasks and earning plan.</p>
+        </div>
+        <a href="/ans" class="px-4 py-2 rounded-lg bg-slate-800 text-white text-sm font-semibold">Change Goal</a>
+      </div>
+      <div class="mt-5">
+        <label class="text-sm font-semibold text-slate-700">Your Goal</label>
+        <div class="mt-1 flex gap-2">
+          <input id="goalInput" class="w-full border rounded-lg px-3 py-2" placeholder="e.g., I want to become web developer" />
+          <button onclick="buildRoadmap()" class="px-4 py-2 rounded-lg bg-emerald-600 text-white font-semibold">Get Start</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="roadmapRoot" class="mt-6 space-y-4"></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const initialGoal = params.get('goal') || '';
+    document.getElementById('goalInput').value = initialGoal;
+
+    const templates = {
+      web_developer: {
+        roleName: 'Web Developer',
+        whatIs: 'A Web Developer builds websites and web applications using frontend (HTML, CSS, JavaScript) and backend (Node.js, databases) technologies. They create user interfaces, APIs, handle databases, testing, and deployment to make websites functional and beautiful.',
+        future: 'Web development has an excellent future. Every business needs websites, e-commerce platforms, dashboards, and web portals. With AI tools, development speed increases, but skilled developers are still essential for architecture, problem-solving, and creating custom solutions. Demand is high globally.',
+        weeklyPlan: [
+          { week: 'Week 1-2', topic: 'HTML5 Basics', hours: '2-3 hrs/day', resource: 'freeCodeCamp HTML Course', link: 'https://www.freecodecamp.org/learn/2022/responsive-web-design/', details: 'Learn tags, forms, semantic HTML, accessibility' },
+          { week: 'Week 3-4', topic: 'CSS3 & Responsive Design', hours: '2-3 hrs/day', resource: 'CSS Tricks + freeCodeCamp', link: 'https://css-tricks.com/', details: 'Flexbox, Grid, media queries, animations' },
+          { week: 'Week 5-6', topic: 'JavaScript Fundamentals', hours: '3-4 hrs/day', resource: 'JavaScript.info + freeCodeCamp', link: 'https://javascript.info/', details: 'Variables, functions, arrays, objects, loops' },
+          { week: 'Week 7-8', topic: 'DOM Manipulation & Events', hours: '3 hrs/day', resource: 'MDN Web Docs + YouTube (Web Dev Simplified)', link: 'https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model', details: 'querySelector, addEventListener, dynamic content' },
+          { week: 'Week 9-10', topic: 'ES6+ & Async JavaScript', hours: '3 hrs/day', resource: 'JavaScript.info + Traversy Media', link: 'https://www.youtube.com/c/TraversyMedia', details: 'Arrow functions, promises, async/await, fetch API' },
+          { week: 'Week 11-14', topic: 'React.js Basics', hours: '4 hrs/day', resource: 'React Official Docs + Net Ninja', link: 'https://react.dev/', details: 'Components, props, state, hooks, routing' },
+          { week: 'Week 15-16', topic: 'React Advanced', hours: '4 hrs/day', resource: 'React Docs + freeCodeCamp', link: 'https://www.freecodecamp.org/learn/front-end-development-libraries/', details: 'Context API, Redux, custom hooks, optimization' },
+          { week: 'Week 17-18', topic: 'Node.js & Express', hours: '3-4 hrs/day', resource: 'Node.js Docs + Traversy Media', link: 'https://nodejs.org/en/docs/', details: 'Server setup, routing, middleware, REST APIs' },
+          { week: 'Week 19-20', topic: 'MongoDB & Authentication', hours: '3-4 hrs/day', resource: 'MongoDB University (free) + YouTube', link: 'https://university.mongodb.com/', details: 'CRUD operations, JWT, bcrypt, sessions' },
+          { week: 'Week 21-24', topic: 'Full-Stack Projects', hours: '5-6 hrs/day', resource: 'Build your own projects', link: '', details: 'E-commerce, blog, social media clone, portfolio' }
+        ],
+        timeline: [
+          'Month 1: Master HTML5, CSS3, responsive design (Flexbox, Grid), Git & GitHub basics',
+          'Month 2: JavaScript fundamentals, DOM manipulation, ES6+, API integration, async/await',
+          'Month 3-4: React.js, component architecture, hooks, state management (Redux/Context)',
+          'Month 5: Backend with Node.js, Express.js, REST APIs, MongoDB/PostgreSQL, authentication',
+          'Month 6: Build 3-5 full-stack projects, deploy them, create portfolio website, start applying'
+        ],
+        freeSources: [
+          'freeCodeCamp - Complete web development certification (free)',
+          'MDN Web Docs - Best documentation for HTML, CSS, JavaScript',
+          'The Odin Project - Project-based full-stack curriculum',
+          'CS50 Web Programming - Harvard University (free on YouTube)',
+          'YouTube: Traversy Media, Web Dev Simplified, Net Ninja, Programming with Mosh'
+        ],
+        tasks: [
+          'Task 1: Build a responsive portfolio website with animations',
+          'Task 2: Create a TODO app with local storage and filters',
+          'Task 3: Build a weather app using external API',
+          'Task 4: Create a blog platform with authentication (MERN stack)',
+          'Task 5: Build an e-commerce site with cart, payment integration, and admin panel'
+        ],
+        hosting: ['Vercel (best for frontend)', 'Netlify (static sites)', 'Railway (full-stack)', 'Render (backend)', 'GitHub Pages (static)', 'Cloudflare Pages'],
+        freelancing: ['Upwork (global clients)', 'Fiverr (quick gigs)', 'Freelancer.com', 'LinkedIn (networking)', 'PeoplePerHour', 'Toptal (expert level)'],
+        accounts: ['GitHub (showcase code)', 'LinkedIn (professional network)', 'Stack Overflow (reputation)', 'Dev.to (write articles)', 'CodePen (demos)', 'Portfolio website']
+      },
+      graphic_designer: {
+        roleName: 'Graphic Designer',
+        whatIs: 'A Graphic Designer creates visual content for brands, websites, social media, and marketing. They use tools like Adobe Photoshop, Illustrator, Figma to design logos, posters, social media graphics, and branding materials.',
+        future: 'Graphic design is always in demand as businesses need branding, social media content, advertisements, and UI designs. With the rise of digital marketing and e-commerce, skilled designers are essential.',
+        timeline: [
+          'Month 1: Learn design principles, color theory, typography, Canva basics',
+          'Month 2: Master Adobe Photoshop - photo editing, manipulation, compositing',
+          'Month 3: Adobe Illustrator - vector graphics, logos, icons, illustrations',
+          'Month 4: Figma/Adobe XD - UI/UX design, prototyping, wireframing',
+          'Month 5-6: Build portfolio with 10-15 projects, start freelancing'
+        ],
+        freeSources: [
+          'YouTube: Satori Graphics, Will Paterson, The Futur, Flux Academy',
+          'Canva Design School (free courses)',
+          'Adobe Creative Cloud tutorials (official)',
+          'Coursera - Graphic Design Specialization (audit free)',
+          'Behance & Dribbble (inspiration and learning)'
+        ],
+        tasks: [
+          'Task 1: Design 5 different logo concepts for fictional brands',
+          'Task 2: Create social media post templates (Instagram, Facebook)',
+          'Task 3: Design a complete brand identity (logo, colors, fonts)',
+          'Task 4: Create UI design for a mobile app',
+          'Task 5: Design marketing materials (flyer, brochure, banner)'
+        ],
+        hosting: ['Behance (portfolio)', 'Dribbble (showcase)', 'Instagram (social presence)', 'Personal website (Wix/WordPress)'],
+        freelancing: ['Fiverr (best for designers)', 'Upwork', '99designs', 'DesignCrowd', 'Freelancer.com'],
+        accounts: ['Behance (must have)', 'Dribbble', 'Instagram', 'LinkedIn', 'Pinterest', 'ArtStation']
+      },
+      data_scientist: {
+        roleName: 'Data Scientist',
+        whatIs: 'A Data Scientist analyzes large datasets to extract insights, build predictive models, and help businesses make data-driven decisions using Python, machine learning, statistics, and visualization tools.',
+        future: 'Data Science is one of the hottest careers. Every company needs data analysis for decision-making, AI/ML models, and business intelligence. High salary and remote opportunities available globally.',
+        timeline: [
+          'Month 1-2: Python basics, NumPy, Pandas, data manipulation',
+          'Month 3: Statistics, probability, data visualization (Matplotlib, Seaborn)',
+          'Month 4-5: Machine Learning algorithms, scikit-learn, model evaluation',
+          'Month 6: Deep Learning basics (TensorFlow/PyTorch), SQL, real projects',
+          'Month 7-8: Build 5 portfolio projects, Kaggle competitions, job applications'
+        ],
+        freeSources: [
+          'Kaggle Learn (free micro-courses)',
+          'Google Data Analytics Certificate (Coursera - audit free)',
+          'freeCodeCamp - Data Analysis with Python',
+          'StatQuest with Josh Starmer (YouTube - statistics)',
+          'CS50 AI - Harvard (free)'
+        ],
+        tasks: [
+          'Task 1: Analyze a dataset and create visualizations',
+          'Task 2: Build a prediction model (house prices, stock prices)',
+          'Task 3: Participate in Kaggle competition',
+          'Task 4: Create a dashboard using Streamlit or Dash',
+          'Task 5: Build an end-to-end ML project with deployment'
+        ],
+        hosting: ['Streamlit Cloud (free)', 'Heroku', 'Railway', 'Google Colab (notebooks)', 'Kaggle Notebooks'],
+        freelancing: ['Upwork', 'Toptal', 'Freelancer.com', 'Kolabtree (science)', 'LinkedIn'],
+        accounts: ['Kaggle (competitions)', 'GitHub', 'LinkedIn', 'Medium (write articles)', 'Stack Overflow']
+      },
+      digital_marketer: {
+        roleName: 'Digital Marketer',
+        whatIs: 'A Digital Marketer promotes products/services online using SEO, social media, email marketing, content marketing, and paid ads (Google Ads, Facebook Ads) to drive traffic and sales.',
+        future: 'Digital marketing is booming as businesses shift online. E-commerce, social media, and online advertising create endless opportunities. Skills in SEO, content, and ads are highly valuable.',
+        timeline: [
+          'Month 1: Learn marketing fundamentals, SEO basics, Google Analytics',
+          'Month 2: Social media marketing (Facebook, Instagram, LinkedIn strategies)',
+          'Month 3: Content marketing, copywriting, email marketing',
+          'Month 4: Google Ads, Facebook Ads, PPC campaigns',
+          'Month 5-6: Run real campaigns, build case studies, create portfolio'
+        ],
+        freeSources: [
+          'Google Digital Garage (free certification)',
+          'HubSpot Academy (free marketing courses)',
+          'Facebook Blueprint (free ads training)',
+          'Neil Patel YouTube channel',
+          'Moz SEO Learning Center'
+        ],
+        tasks: [
+          'Task 1: Create and optimize a Google My Business listing',
+          'Task 2: Run a Facebook Ads campaign (even with $5 budget)',
+          'Task 3: Write 10 SEO-optimized blog posts',
+          'Task 4: Grow a social media page to 1000 followers',
+          'Task 5: Create email marketing campaign with automation'
+        ],
+        hosting: ['WordPress (blog)', 'Wix/Squarespace (portfolio)', 'LinkedIn (personal brand)'],
+        freelancing: ['Upwork', 'Fiverr', 'Freelancer.com', 'PeoplePerHour', 'LinkedIn'],
+        accounts: ['LinkedIn (must)', 'Twitter/X', 'Facebook Business', 'Google Ads account', 'Personal blog/website']
+      },
+      mobile_developer: {
+        roleName: 'Mobile App Developer',
+        whatIs: 'A Mobile Developer creates applications for iOS and Android devices using technologies like React Native, Flutter, Swift, or Kotlin. They build user-friendly mobile experiences.',
+        future: 'Mobile apps are everywhere. With billions of smartphone users, demand for mobile developers is extremely high. Cross-platform development (React Native, Flutter) makes it easier to build for both platforms.',
+        timeline: [
+          'Month 1-2: Learn JavaScript/Dart basics, mobile UI/UX principles',
+          'Month 3-4: Master React Native or Flutter framework',
+          'Month 5: API integration, state management, navigation',
+          'Month 6: Build 3-4 complete apps, publish to Play Store/App Store',
+          'Month 7: Portfolio, GitHub, start applying for jobs/freelance'
+        ],
+        freeSources: [
+          'React Native - Official docs + YouTube tutorials',
+          'Flutter - Official documentation and codelabs',
+          'CS50 Mobile App Development (Harvard - free)',
+          'YouTube: Academind, The Net Ninja, Traversy Media',
+          'freeCodeCamp mobile development courses'
+        ],
+        tasks: [
+          'Task 1: Build a calculator app',
+          'Task 2: Create a weather app with API',
+          'Task 3: Build a todo/notes app with local storage',
+          'Task 4: Create a social media clone (basic features)',
+          'Task 5: Build and publish an app to Play Store'
+        ],
+        hosting: ['Google Play Store (Android)', 'Apple App Store (iOS)', 'GitHub (code)', 'Expo (React Native hosting)'],
+        freelancing: ['Upwork', 'Toptal', 'Freelancer.com', 'Fiverr', 'LinkedIn'],
+        accounts: ['GitHub', 'LinkedIn', 'Google Play Console', 'Apple Developer (paid)', 'Portfolio website']
+      }
+    };
+
+    function detectTemplate(goal) {
+      const g = goal.toLowerCase();
+      if (g.includes('web') || g.includes('website')) return templates.web_developer;
+      if (g.includes('graphic') || g.includes('design') && !g.includes('web')) return templates.graphic_designer;
+      if (g.includes('data') || g.includes('machine learning') || g.includes('ai')) return templates.data_scientist;
+      if (g.includes('marketing') || g.includes('seo') || g.includes('social media')) return templates.digital_marketer;
+      if (g.includes('mobile') || g.includes('app') || g.includes('android') || g.includes('ios')) return templates.mobile_developer;
+      if (g.includes('developer') || g.includes('programmer')) return templates.web_developer;
+      
+      return {
+        roleName: goal,
+        whatIs: `${goal} is a professional career path where you develop specialized skills, solve real-world problems, and create value in your chosen field. Success requires dedication, continuous learning, and practical experience.`,
+        future: `The future of ${goal} depends on market demand and your ability to adapt. Focus on building practical skills, creating a strong portfolio, networking, and staying updated with industry trends. Remote work and global opportunities are expanding.`,
+        timeline: [
+          'Month 1-2: Research and learn fundamentals - Study basics, watch tutorials, understand core concepts',
+          'Month 3-4: Hands-on practice - Follow guided projects, practice daily, build small projects',
+          'Month 5-6: Build portfolio - Create 3-5 quality projects showcasing your skills',
+          'Month 7-8: Start earning - Apply for internships, freelance gigs, or entry-level positions',
+          'Month 9-12: Grow and specialize - Develop expertise, increase rates, build reputation'
+        ],
+        freeSources: [
+          'YouTube - Search for structured playlists and full courses',
+          'Coursera & edX - Audit courses for free (no certificate needed)',
+          'freeCodeCamp - Free certifications in various tech fields',
+          'Khan Academy - Foundational knowledge',
+          'Official documentation and community forums',
+          'Medium & Dev.to - Read articles from professionals'
+        ],
+        tasks: [
+          'Task 1: Complete one beginner project following a tutorial',
+          'Task 2: Build a simple project from scratch without tutorial',
+          'Task 3: Create a portfolio website showcasing your work',
+          'Task 4: Contribute to open source or help others in community',
+          'Task 5: Build a complex project that solves a real problem'
+        ],
+        hosting: ['GitHub Pages (free)', 'Netlify (free tier)', 'Vercel (free)', 'Railway (free tier)', 'Render (free)'],
+        freelancing: ['Upwork (global marketplace)', 'Fiverr (gig-based)', 'Freelancer.com', 'LinkedIn (networking)', 'Local job boards'],
+        accounts: ['LinkedIn (professional network)', 'GitHub (if tech-related)', 'Portfolio website', 'Twitter/X (industry connections)', 'Relevant community forums']
+      };
+    }
+
+    function section(title, bodyHtml) {
+      return `
+        <div class="glass rounded-xl p-5 border border-white/70">
+          <h2 class="text-xl font-extrabold text-slate-800">${title}</h2>
+          <div class="mt-2 text-slate-700 text-sm leading-6">${bodyHtml}</div>
+        </div>
+      `;
+    }
+
+    function weeklyTable(weeks) {
+      if (!weeks || weeks.length === 0) return '';
+      return `
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100">
+                <th class="p-2 font-bold text-xs">Week</th>
+                <th class="p-2 font-bold text-xs">Topic</th>
+                <th class="p-2 font-bold text-xs">Hours/Day</th>
+                <th class="p-2 font-bold text-xs">Resource</th>
+                <th class="p-2 font-bold text-xs">What to Learn</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${weeks.map(w => `
+                <tr class="border-b hover:bg-slate-50">
+                  <td class="p-2 font-bold text-xs text-emerald-600">${w.week}</td>
+                  <td class="p-2 text-xs font-semibold">${w.topic}</td>
+                  <td class="p-2 text-xs">${w.hours}</td>
+                  <td class="p-2 text-xs">${w.link ? `<a href="${w.link}" target="_blank" class="text-blue-600 underline">${w.resource}</a>` : w.resource}</td>
+                  <td class="p-2 text-xs text-slate-600">${w.details}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function list(items) {
+      return `<ul class="list-disc pl-5">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    }
+
+    function buildRoadmap() {
+      const goal = document.getElementById('goalInput').value.trim();
+      if (!goal) {
+        alert('Please enter your goal.');
+        return;
+      }
+      const t = detectTemplate(goal);
+      const sections = [
+        section('1️⃣ What Is ' + t.roleName + '?', `<strong>${t.roleName}</strong>: ${t.whatIs}`),
+        section('2️⃣ Future of ' + t.roleName, t.future)
+      ];
+      
+      // Add weekly plan if available
+      if (t.weeklyPlan && t.weeklyPlan.length > 0) {
+        sections.push(section('3️⃣ Week-by-Week Learning Plan (Detailed)', weeklyTable(t.weeklyPlan)));
+        sections.push(section('4️⃣ Monthly Summary', list(t.timeline)));
+      } else {
+        sections.push(section('3️⃣ Learning Timeline & Steps', list(t.timeline)));
+      }
+      
+      sections.push(
+        section((t.weeklyPlan ? '5️⃣' : '4️⃣') + ' Free Learning Resources', list(t.freeSources)),
+        section((t.weeklyPlan ? '6️⃣' : '5️⃣') + ' Practical Tasks & Projects', `<p class="mb-2 font-semibold">Complete these tasks and submit for feedback:</p>` + list(t.tasks)),
+        section((t.weeklyPlan ? '7️⃣' : '6️⃣') + ' Free Hosting Platforms', `<p class="mb-2">Deploy your projects for free on these platforms:</p>` + list(t.hosting)),
+        section((t.weeklyPlan ? '8️⃣' : '7️⃣') + ' Freelancing Platforms', `<p class="mb-2">Start earning by creating accounts on:</p>` + list(t.freelancing))
+      );
+      
+      if (t.accounts) {
+        sections.push(section((t.weeklyPlan ? '9️⃣' : '8️⃣') + ' Important Accounts to Create', `<p class="mb-2">Build your online presence:</p>` + list(t.accounts)));
+      }
+      
+      // Add task submission section
+      sections.push(section('📤 Submit Your Task for Review', `
+        <div class="space-y-3">
+          <p class="text-sm">Complete a task and submit it here for AI-powered feedback and improvement suggestions.</p>
+          <select id="taskSelect" class="w-full p-2 border rounded">
+            <option value="">Select a task...</option>
+            ${t.tasks.map((task, i) => `<option value="${i}">${task}</option>`).join('')}
+          </select>
+          <input type="url" id="taskUrl" placeholder="Project URL (GitHub, Live Demo, etc.)" class="w-full p-2 border rounded" />
+          <textarea id="taskDescription" placeholder="Describe what you built and any challenges faced..." class="w-full p-2 border rounded" rows="3"></textarea>
+          <button onclick="submitTask()" class="px-4 py-2 bg-emerald-600 text-white rounded font-bold hover:bg-emerald-700">Submit for Review</button>
+          <div id="feedbackArea" class="hidden mt-4 p-4 bg-blue-50 rounded"></div>
+        </div>
+      `));
+      
+      const html = sections.join('');
+      document.getElementById('roadmapRoot').innerHTML = html;
+      history.replaceState({}, '', `/roadmap?goal=${encodeURIComponent(goal)}`);
+    }
+
+    if (initialGoal) buildRoadmap();
+
+    // Task submission with AI feedback
+    async function submitTask() {
+      const taskSelect = document.getElementById('taskSelect');
+      const taskUrl = document.getElementById('taskUrl').value.trim();
+      const taskDescription = document.getElementById('taskDescription').value.trim();
+      const feedbackArea = document.getElementById('feedbackArea');
+      
+      if (!taskSelect.value) {
+        alert('Please select a task');
+        return;
+      }
+      
+      if (!taskUrl && !taskDescription) {
+        alert('Please provide either a URL or description');
+        return;
+      }
+      
+      feedbackArea.classList.remove('hidden');
+      feedbackArea.innerHTML = '<p class="text-sm font-bold">🤖 Analyzing your submission...</p>';
+      
+      const taskName = taskSelect.options[taskSelect.selectedIndex].text;
+      
+      try {
+        // Call AI API for feedback
+        const response = await fetch('/api/task-review', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            task: taskName,
+            url: taskUrl,
+            description: taskDescription,
+            goal: document.getElementById('goalInput').value
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          feedbackArea.innerHTML = `
+            <h3 class="font-bold text-lg mb-2">✅ Review Complete</h3>
+            <div class="space-y-2 text-sm">
+              <div><strong>Strengths:</strong> ${data.feedback.strengths}</div>
+              <div><strong>Improvements:</strong> ${data.feedback.improvements}</div>
+              <div><strong>Next Steps:</strong> ${data.feedback.nextSteps}</div>
+              <div><strong>Score:</strong> <span class="text-emerald-600 font-bold">${data.feedback.score}/10</span></div>
+            </div>
+          `;
+        } else {
+          feedbackArea.innerHTML = `<p class="text-red-600">Error: ${data.error}</p>`;
+        }
+      } catch (error) {
+        feedbackArea.innerHTML = `<p class="text-red-600">Failed to get feedback. Please try again.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

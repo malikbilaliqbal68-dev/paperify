@@ -1,0 +1,400 @@
+[
+  {
+    "paperId": "fdaed06a615e3cfdcf52",
+    "ownerEmail": "guest@paperify.local",
+    "title": "PUNJAB Class 9 - 18/02/2026",
+    "board": "punjab",
+    "className": "9",
+    "group": "",
+    "selections": [
+      {
+        "subject": "Biology",
+        "chapters": [
+          {
+            "title": "The Science of Biology",
+            "topics": []
+          },
+          {
+            "title": "Biodiversity and Classification",
+            "topics": []
+          },
+          {
+            "title": "Cell Structure and Function",
+            "topics": []
+          },
+          {
+            "title": "Cell Cycle, Mitosis and Meiosis",
+            "topics": []
+          },
+          {
+            "title": "Tissue, Organ, and Organ System",
+            "topics": []
+          },
+          {
+            "title": "Biomolecules",
+            "topics": []
+          },
+          {
+            "title": "Enzymes and Metabolism",
+            "topics": []
+          },
+          {
+            "title": "Bioenergetics",
+            "topics": []
+          },
+          {
+            "title": "Plant Nutrition, Transport and Transpiration",
+            "topics": []
+          },
+          {
+            "title": "Reproduction in Plants",
+            "topics": []
+          }
+        ]
+      }
+    ],
+    "config": {
+      "duration": "1 Hours",
+      "sections": {
+        "mcqs": {
+          "mode": "random",
+          "picked": []
+        },
+        "short": {
+          "mode": "random",
+          "picked": []
+        },
+        "long": {
+          "mode": "pick",
+          "picked": []
+        },
+        "theorem": {
+          "mode": "random",
+          "picked": []
+        },
+        "verb": {
+          "mode": "random",
+          "picked": []
+        },
+        "underline": {
+          "mode": "random",
+          "picked": []
+        },
+        "paragraph": {
+          "mode": "random",
+          "picked": []
+        },
+        "rtc": {
+          "mode": "random",
+          "picked": []
+        }
+      },
+      "marksMap": {
+        "Summaries": 5,
+        "Letters": 8,
+        "Stories": 10,
+        "Applications": 8,
+        "Comprehension": 10,
+        "Tenses": 5,
+        "Review": 5,
+        "Active_Passive_Voice": 5,
+        "Dialogues": 5,
+        "idioms": 5
+      },
+      "mcqs": {
+        "include": true,
+        "count": 10,
+        "attempts": 10,
+        "marks": 1,
+        "mode": "random",
+        "picked": []
+      },
+      "verb": {
+        "include": false,
+        "count": 5,
+        "attempts": 5,
+        "marks": 1,
+        "mode": "random",
+        "picked": []
+      },
+      "underline": {
+        "include": false,
+        "count": 5,
+        "attempts": 5,
+        "marks": 1,
+        "mode": "random",
+        "picked": []
+      },
+      "short": {
+        "include": true,
+        "count": 10,
+        "attempts": 5,
+        "marks": 2,
+        "mode": "random",
+        "picked": []
+      },
+      "long": {
+        "include": true,
+        "count": 0,
+        "attempts": 3,
+        "marks": 4,
+        "mode": "pick",
+        "picked": []
+      },
+      "paragraph": {
+        "include": false,
+        "count": 1,
+        "attempts": 1,
+        "marks": 8,
+        "mode": "random",
+        "picked": []
+      },
+      "rtc": {
+        "include": false,
+        "count": 1,
+        "attempts": 1,
+        "marks": 5,
+        "mode": "random",
+        "picked": []
+      },
+      "theorem": {
+        "include": false,
+        "count": 2,
+        "attempts": 1,
+        "marks": 8,
+        "mode": "random",
+        "picked": []
+      }
+    },
+    "totalMarks": 30,
+    "instituteName": "",
+    "createdAt": "2026-02-18T04:54:35.372Z",
+    "updatedAt": "2026-02-18T04:54:35.372Z",
+    "collaboration": {
+      "shareId": null,
+      "editors": [
+        "guest@paperify.local"
+      ],
+      "staff": []
+    }
+  },
+  {
+    "paperId": "04cd2146e27db5afa062",
+    "ownerEmail": "guest@paperify.local",
+    "title": "PUNJAB Class 9 - 20/02/2026",
+    "board": "punjab",
+    "className": "9",
+    "group": "",
+    "selections": [
+      {
+        "subject": "English",
+        "chapters": [
+          {
+            "title": "The saviour of Mankind",
+            "topics": []
+          },
+          {
+            "title": "Patriotism",
+            "topics": []
+          },
+          {
+            "title": "Daffodils",
+            "topics": []
+          },
+          {
+            "title": "Hazrat Asma",
+            "topics": []
+          },
+          {
+            "title": "The value of Time",
+            "topics": []
+          },
+          {
+            "title": "If(Summary)",
+            "topics": []
+          },
+          {
+            "title": "The Quality Education",
+            "topics": []
+          },
+          {
+            "title": "The Dear Departed(Play)",
+            "topics": []
+          },
+          {
+            "title": "Women Empowerment through Entrepreneurship",
+            "topics": []
+          },
+          {
+            "title": "Globalisation",
+            "topics": []
+          },
+          {
+            "title": "Wildlife Vignettes: Snow Leopard and Markhor",
+            "topics": []
+          }
+        ]
+      }
+    ],
+    "config": {
+      "duration": "1 Hours",
+      "sections": {
+        "mcqs": {
+          "mode": "random",
+          "picked": []
+        },
+        "short": {
+          "mode": "random",
+          "picked": []
+        },
+        "long": {
+          "mode": "random",
+          "picked": []
+        },
+        "theorem": {
+          "mode": "random",
+          "picked": []
+        },
+        "verb": {
+          "mode": "random",
+          "picked": []
+        },
+        "underline": {
+          "mode": "random",
+          "picked": []
+        },
+        "paragraph": {
+          "mode": "random",
+          "picked": []
+        },
+        "rtc": {
+          "mode": "random",
+          "picked": []
+        },
+        "Summaries": {
+          "mode": "pick",
+          "picked": []
+        },
+        "Review": {
+          "mode": "pick",
+          "picked": []
+        },
+        "Active_Passive_Voice": {
+          "mode": "pick",
+          "picked": []
+        },
+        "Letters": {
+          "mode": "pick",
+          "picked": []
+        },
+        "Stories": {
+          "mode": "pick",
+          "picked": []
+        },
+        "Dialogues": {
+          "mode": "pick",
+          "picked": []
+        },
+        "idioms": {
+          "mode": "pick",
+          "picked": []
+        },
+        "Tenses": {
+          "mode": "pick",
+          "picked": []
+        },
+        "paragraphs": {
+          "mode": "pick",
+          "picked": []
+        }
+      },
+      "marksMap": {
+        "Summaries": 5,
+        "Letters": 8,
+        "Stories": 10,
+        "Applications": 8,
+        "Comprehension": 10,
+        "Tenses": 5,
+        "Review": 5,
+        "Active_Passive_Voice": 5,
+        "Dialogues": 5,
+        "idioms": 5
+      },
+      "mcqs": {
+        "include": true,
+        "count": 10,
+        "attempts": 10,
+        "marks": 1,
+        "mode": "random",
+        "picked": []
+      },
+      "verb": {
+        "include": true,
+        "count": 5,
+        "attempts": 5,
+        "marks": 1,
+        "mode": "random",
+        "picked": []
+      },
+      "underline": {
+        "include": true,
+        "count": 5,
+        "attempts": 5,
+        "marks": 1,
+        "mode": "random",
+        "picked": []
+      },
+      "short": {
+        "include": true,
+        "count": 10,
+        "attempts": 5,
+        "marks": 2,
+        "mode": "random",
+        "picked": []
+      },
+      "long": {
+        "include": true,
+        "count": 6,
+        "attempts": 3,
+        "marks": 4,
+        "mode": "random",
+        "picked": []
+      },
+      "paragraph": {
+        "include": false,
+        "count": 1,
+        "attempts": 1,
+        "marks": 8,
+        "mode": "random",
+        "picked": []
+      },
+      "rtc": {
+        "include": false,
+        "count": 1,
+        "attempts": 1,
+        "marks": 5,
+        "mode": "random",
+        "picked": []
+      },
+      "theorem": {
+        "include": false,
+        "count": 2,
+        "attempts": 1,
+        "marks": 8,
+        "mode": "random",
+        "picked": []
+      }
+    },
+    "totalMarks": 64,
+    "instituteName": "",
+    "createdAt": "2026-02-20T10:13:46.999Z",
+    "updatedAt": "2026-02-20T10:13:46.999Z",
+    "collaboration": {
+      "shareId": null,
+      "editors": [
+        "guest@paperify.local"
+      ],
+      "staff": []
+    }
+  }
+]
