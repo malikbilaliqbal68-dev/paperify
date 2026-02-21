@@ -906,7 +906,7 @@
         <div class="bg-[#3f3a64] rounded-2xl p-6 border-b-4 border-[#19c880] text-center shadow-xl">
             <span class="text-[11px] uppercase tracking-[3px] text-gray-300 font-black mb-3 block">Send Payment To</span>
             <p class="text-4xl font-mono font-black text-[#19c880] tracking-tighter mb-2">0344 8007154</p>
-            <p class="text-[10px] text-white/70 uppercase font-bold tracking-widest">Exact amount only</p>
+            <p class="text-[10px] text-white/70 uppercase font-bold tracking-widest">Send exactly PKR ${amount}</p>
         </div>
 
         <div id="orderInfo" class="rounded-xl border border-gray-200 bg-gray-50 p-3 text-xs text-gray-700">
@@ -949,7 +949,7 @@
 
             document.getElementById('paymentContent').innerHTML = paymentHTML;
             document.getElementById('paymentModal').classList.add('active');
-                        setTimeout(() => createPaymentOrder(plan, books), 50);
+            setTimeout(() => createPaymentOrder(plan, books), 50);
         }
 
         async function createPaymentOrder(plan, books) {
@@ -1080,6 +1080,9 @@
 </body>
 
 </html>
+
+
+
 
 
 
