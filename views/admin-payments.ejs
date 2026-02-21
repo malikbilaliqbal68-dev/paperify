@@ -145,7 +145,7 @@
                                         <span class="font-semibold ml-2">${payment.plan}</span>
                                     </div>
                                     <div>
-                                        <span class="text-gray-500">Amount:</span>
+                                        <span class="text-gray-500">Expected Amount:</span>
                                         <span class="font-semibold ml-2 text-green-600">PKR ${payment.amount}</span>
                                     </div>
                                     <div>
@@ -158,6 +158,9 @@
                                         <span class="font-semibold ml-2">${books.join(', ')}</span>
                                     </div>
                                     ` : ''}
+                                    <div class="col-span-2 mt-2 p-2 bg-blue-50 rounded border border-blue-200">
+                                        <span class="text-xs text-blue-800"><i class="fas fa-info-circle"></i> Verify screenshot shows PKR ${payment.amount} payment</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2">
@@ -225,3 +228,4 @@
     </script>
 </body>
 </html>
+
