@@ -949,7 +949,7 @@
 
             document.getElementById('paymentContent').innerHTML = paymentHTML;
             document.getElementById('paymentModal').classList.add('active');
-            createPaymentOrder(plan, books);
+                        setTimeout(() => createPaymentOrder(plan, books), 50);
         }
 
         async function createPaymentOrder(plan, books) {
@@ -1080,5 +1080,6 @@
 </body>
 
 </html>
+
 
 
